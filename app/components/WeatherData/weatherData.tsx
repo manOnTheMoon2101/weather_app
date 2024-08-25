@@ -52,7 +52,7 @@ function WeatherData() {
             type="text"
             placeholder="Enter city name..."
             value={city}
-            className="w-full p-2.5 text-base border border-gray-300 rounded-md box-border rounded border-orange-600 bg-orange-600 text-white"
+            className="w-full p-2.5 text-base border border-gray-300 rounded-md box-border rounded border-white border-4 bg-orange-600 text-white"
             onChange={handleInputChange}
           />
           {/* <Popover open={open} onOpenChange={setOpen}>

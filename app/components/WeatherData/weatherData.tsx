@@ -52,55 +52,9 @@ function WeatherData() {
             type="text"
             placeholder="Enter city name..."
             value={city}
-            className="w-full p-2.5 text-base border border-gray-300 rounded-md box-border rounded border-white border-4 bg-orange-600 text-white placeholder:text-slate-600 placeholder:italic"
+            className="w-full p-2.5 text-base border border-gray-300 rounded-md box-border rounded border-white border-4 bg-emerald-300 text-white placeholder:text-slate-600 placeholder:italic"
             onChange={handleInputChange}
           />
-          {/* <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className="w-[200px] justify-between"
-              >
-                {value
-                  ? frameworks.find((framework) => framework.value === value)
-                      ?.label
-                  : "Select framework..."}
-                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
-              <Command>
-                <CommandInput placeholder="Search framework..." />
-                <CommandList>
-                  <CommandEmpty>No framework found.</CommandEmpty>
-                  <CommandGroup>
-                    {frameworks.map((framework) => (
-                      <CommandItem
-                        key={framework.value}
-                        value={framework.value}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue);
-                          setOpen(false);
-                        }}
-                      >
-                        <Check
-                          className={cn(
-                            "mr-2 h-4 w-4",
-                            value === framework.value
-                              ? "opacity-100"
-                              : "opacity-0"
-                          )}
-                        />
-                        {framework.label}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover> */}
           <button
             className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-white"
             type="submit"
@@ -110,54 +64,58 @@ function WeatherData() {
         </div>
       </form>
       {isLoading ? (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-4  backdrop-blur-sm w-[500px] h-[500px] max-w-[500px] max-h-[500px]">
-          <SkeletonTheme baseColor="#500724" highlightColor="#FABC3F">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg p-2.5  w-[500px] h-[500px] max-w-[500px] max-h-[500px] backdrop-blur-[100%]">
+          <SkeletonTheme baseColor="#BDE8CA" highlightColor="#0D7C66">
             <Skeleton
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
               count={1}
               width={200}
+              height={20}
             />
           </SkeletonTheme>
         </div>
       ) : (
-        <div></div>
-      )}
-      {weatherData ? (
-        <div className="m-10">
-          <h2 className={`text-center text-4xl`}>{weatherData.name}</h2>
+        <div>
+          {weatherData ? (
+            <div className="m-10">
+              <h2
+                className={`text-center text-4xl text-white ${averia.className}`}
+              >
+                {weatherData.name}
+              </h2>
 
-          <Description value={weatherData.weather[0].description} />
+              <Description value={weatherData.weather[0].description} />
 
-          <div className="m-5 flex flex-col items-baseline">
-            <Badge
-              className={`${averia.className} text-2xl bg-fuchsia-800 text-white m-1`}
-            >
-              {weatherData.weather[0].description}
-            </Badge>
-            <Badge className="bg-pink-800 text-white text-2xl  m-1">
-              {weatherData.main.temp}°C
-            </Badge>
-            <p className={`${averia.className} m-1 text-xl`}>
-              {isoString}
-            </p>
-          </div>
-        </div>
-      ) : (
-        <div className="text-center m-10">
-          <h2
-            className={`${averia.className} text-center text-black text-6xl sm:text-8xl tracking-wide`}
-
-          >
-            Welcome
-            {/* <span>👋</span> */}
-          </h2>
-          <p
-            className={`${averia.className} text-center text-white text-2xl md:text-4xl tracking-tight`}
-
-          >
-            Enter you designated city<br/> in
-            the search bar on top.
-          </p>
+              <div className="m-5 flex flex-col items-baseline">
+                <Badge
+                  className={`${averia.className} text-2xl bg-purple-600 text-white m-1`}
+                >
+                  {weatherData.weather[0].description}
+                </Badge>
+                <Badge className="bg-teal-500 text-white text-2xl  m-1">
+                  {weatherData.main.temp}°C
+                </Badge>
+                <p className={`${averia.className} m-1 text-xl text-white`}>
+                  {isoString}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center m-10">
+              <h2
+                className={`${averia.className} text-center text-black text-6xl sm:text-8xl tracking-wide`}
+              >
+                Welcome
+                {/* <span>👋</span> */}
+              </h2>
+              <p
+                className={`${averia.className} text-center text-white text-2xl md:text-4xl tracking-tight`}
+              >
+                Enter you designated city
+                <br /> in the search bar on top.
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>

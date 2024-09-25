@@ -8,6 +8,15 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import cities from "../../../data/cities.json";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 const averia = Averia_Sans_Libre({
   subsets: ["latin"],
   weight: "400",
@@ -43,24 +52,39 @@ function WeatherData() {
     e.preventDefault();
     fetchData();
   };
-
+  const [open, setOpen] = React.useState(false);
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="relative m-5 w-[300px] flex mx-auto">
-          <Input
-            type="text"
-            placeholder="Enter city name..."
-            value={city}
-            className="w-full p-2.5 text-base border border-gray-300 rounded-md box-border rounded border-white border-4 bg-emerald-300 text-white placeholder:text-slate-600 placeholder:italic"
-            onChange={handleInputChange}
-          />
+          <Command>
+            <CommandInput placeholder="Search framework..." />
+            <CommandList>
+              <CommandEmpty>No Cities found...</CommandEmpty>
+              <CommandGroup>
+                {cities.map((framework) => (
+                  <CommandItem
+                    key={framework.value}
+                    value={framework.value}
+                    onSelect={(currentValue) => {
+                      setCity(currentValue === city ? "" : currentValue);
+                      setOpen(false);
+                      () => handleSubmit
+                    }}
+                  >
+                    {framework.name}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
           <button
             className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-white"
             type="submit"
           >
             <CiSearch />
           </button>
+          <h2>{city}</h2>
         </div>
       </form>
       {isLoading ? (

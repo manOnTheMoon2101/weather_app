@@ -62,60 +62,9 @@ function WeatherData() {
   const [open, setOpen] = React.useState(false);
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="relative m-5 w-[300px] flex mx-auto">
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className="w-[200px] justify-between w-full bg-amber-200 font-bold"
-              >
-                {city
-                  ? cities.find((framework) => framework.value === city)?.name
-                  : "Select City..."}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-full p-2.5 bg-amber-200">
-              <Command>
-                <CommandInput placeholder="Search City..." />
-                <CommandList>
-                  <CommandEmpty>No city found.</CommandEmpty>
-                  <CommandGroup className="w-full bg-amber-200">
-                    {cities.map((framework) => (
-                      <CommandItem
-                        key={framework.value}
-                        value={framework.value}
-                        onSelect={(currentValue) => {
-                          setCity(currentValue === city ? "" : currentValue);
-                          setOpen(false);
-                        }}
-                      >
-                        <p className="text-purple-900 font-bold">
-                          {" "}
-                          {framework.name}
-                        </p>
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
-          <Button
-            variant="ghost"
-            className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-black"
-            type="submit"
-          >
-            <CiSearch />
-          </Button>
-        </div>
-      </form>
-
       {isLoading ? (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg p-2.5  w-[500px] h-[500px] max-w-[500px] max-h-[500px] backdrop-blur-[100%]">
-          <SkeletonTheme baseColor="#BDE8CA" highlightColor="#0D7C66">
+          <SkeletonTheme baseColor="#fde68a" highlightColor="#fca5a5">
             <Skeleton
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
               count={1}
@@ -126,6 +75,59 @@ function WeatherData() {
         </div>
       ) : (
         <div>
+          <form onSubmit={handleSubmit}>
+            <div className="relative m-5 w-[300px] flex mx-auto">
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="w-[200px] justify-between w-full bg-amber-200 font-bold"
+                  >
+                    {city
+                      ? cities.find((framework) => framework.value === city)
+                          ?.name
+                      : "Select City..."}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-2.5 bg-amber-200">
+                  <Command>
+                    <CommandInput placeholder="Search City..." />
+                    <CommandList>
+                      <CommandEmpty>No city found.</CommandEmpty>
+                      <CommandGroup className="w-full bg-amber-200">
+                        {cities.map((framework) => (
+                          <CommandItem
+                            key={framework.value}
+                            value={framework.value}
+                            onSelect={(currentValue) => {
+                              setCity(
+                                currentValue === city ? "" : currentValue
+                              );
+                              setOpen(false);
+                            }}
+                          >
+                            <p className="text-purple-900 font-bold">
+                              {" "}
+                              {framework.name}
+                            </p>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+              <Button
+                variant="ghost"
+                className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-black"
+                type="submit"
+              >
+                <CiSearch />
+              </Button>
+            </div>
+          </form>
           {weatherData ? (
             <div className="m-10">
               <h2

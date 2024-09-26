@@ -53,11 +53,9 @@ const Description: React.FC<DescriptionProps> = ({ value }) => {
       sceneUrl =
         "https://draft.spline.design/6YVF9rFIh9M-O92I/scene.splinecode";
     } else if (value === result) {
-      sceneUrl =
-        "https://draft.spline.design/mUcyW1YpZ0k1hAtX/scene.splinecode";
+      sceneUrl = "https://prod.spline.design/qdxaAmInr8iXbeje/scene.splinecode";
     } else if (value === result2) {
-      sceneUrl =
-        "https://draft.spline.design/fU5M7gAGyi0Usmmj/scene.splinecode";
+      sceneUrl = "https://prod.spline.design/lioj8FyaRlXlt1sl/scene.splinecode";
     }
 
     const timer = setTimeout(() => {
@@ -69,11 +67,11 @@ const Description: React.FC<DescriptionProps> = ({ value }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-row justify-end">
+      <div className="flex flex-row justify-center">
         {" "}
         <SkeletonTheme baseColor="#BDE8CA" highlightColor="#0D7C66">
           <Skeleton
-            className="flex flex-row justify-end"
+            className="flex flex-row justify-center"
             count={1}
             width={200}
             height={100}
@@ -86,7 +84,7 @@ const Description: React.FC<DescriptionProps> = ({ value }) => {
   return (
     <>
       {splineScene ? (
-        <Spline className="flex flex-row justify-end" scene={splineScene} />
+        <Spline className="flex flex-row justify-center" scene={splineScene} />
       ) : (
         <div>No matching scene found.</div>
       )}

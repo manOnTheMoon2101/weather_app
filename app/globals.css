@@ -3,5 +3,24 @@
 @tailwind utilities;
 
 :root {
-  background-color: #B7E0FF;
+  background-color: #b7e0ff;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fdba74;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fca5a5;
 }

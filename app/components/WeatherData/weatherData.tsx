@@ -17,6 +17,12 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 const averia = Averia_Sans_Libre({
   subsets: ["latin"],
   weight: "400",
@@ -52,41 +58,61 @@ function WeatherData() {
     e.preventDefault();
     fetchData();
   };
+
   const [open, setOpen] = React.useState(false);
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="relative m-5 w-[300px] flex mx-auto">
-          <Command>
-            <CommandInput placeholder="Search framework..." />
-            <CommandList>
-              <CommandEmpty>No Cities found...</CommandEmpty>
-              <CommandGroup>
-                {cities.map((framework) => (
-                  <CommandItem
-                    key={framework.value}
-                    value={framework.value}
-                    onSelect={(currentValue) => {
-                      setCity(currentValue === city ? "" : currentValue);
-                      setOpen(false);
-                      () => handleSubmit
-                    }}
-                  >
-                    {framework.name}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-          </Command>
-          <button
-            className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-white"
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                className="w-[200px] justify-between w-full bg-amber-200 font-bold"
+              >
+                {city
+                  ? cities.find((framework) => framework.value === city)?.name
+                  : "Select City..."}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full p-2.5 bg-amber-200">
+              <Command>
+                <CommandInput placeholder="Search City..." />
+                <CommandList>
+                  <CommandEmpty>No city found.</CommandEmpty>
+                  <CommandGroup className="w-full bg-amber-200">
+                    {cities.map((framework) => (
+                      <CommandItem
+                        key={framework.value}
+                        value={framework.value}
+                        onSelect={(currentValue) => {
+                          setCity(currentValue === city ? "" : currentValue);
+                          setOpen(false);
+                        }}
+                      >
+                        <p className="text-purple-900 font-bold">
+                          {" "}
+                          {framework.name}
+                        </p>
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Popover>
+          <Button
+            variant="ghost"
+            className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-black"
             type="submit"
           >
             <CiSearch />
-          </button>
-          <h2>{city}</h2>
+          </Button>
         </div>
       </form>
+
       {isLoading ? (
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg p-2.5  w-[500px] h-[500px] max-w-[500px] max-h-[500px] backdrop-blur-[100%]">
           <SkeletonTheme baseColor="#BDE8CA" highlightColor="#0D7C66">
@@ -112,11 +138,11 @@ function WeatherData() {
 
               <div className="m-5 flex flex-col items-baseline">
                 <Badge
-                  className={`${averia.className} text-2xl bg-purple-600 text-white m-1`}
+                  className={`${averia.className} text-2xl bg-red-400 text-white m-1`}
                 >
                   {weatherData.weather[0].description}
                 </Badge>
-                <Badge className="bg-teal-500 text-white text-2xl  m-1">
+                <Badge className="bg-orange-300 text-white text-2xl  m-1">
                   {weatherData.main.temp}°C
                 </Badge>
                 <p className={`${averia.className} m-1 text-xl text-white`}>

@@ -86,8 +86,7 @@ function WeatherData() {
                     className="w-[200px] justify-between w-full bg-amber-200 font-bold"
                   >
                     {city
-                      ? cities.find((framework) => framework.value === city)
-                          ?.name
+                      ? cities.find((x) => x.value === city)?.name
                       : "Select City..."}
                   </Button>
                 </PopoverTrigger>
@@ -97,10 +96,10 @@ function WeatherData() {
                     <CommandList>
                       <CommandEmpty>No city found.</CommandEmpty>
                       <CommandGroup className="w-full bg-amber-200">
-                        {cities.map((framework) => (
+                        {cities.map((x) => (
                           <CommandItem
-                            key={framework.value}
-                            value={framework.value}
+                            key={x.value}
+                            value={x.value}
                             onSelect={(currentValue) => {
                               setCity(
                                 currentValue === city ? "" : currentValue
@@ -108,10 +107,15 @@ function WeatherData() {
                               setOpen(false);
                             }}
                           >
-                            <p className="text-purple-900 font-bold">
-                              {" "}
-                              {framework.name}
+                          <div className="flex flex-row justify-between w-full">
+                          <p className="text-purple-900 font-bold">
+                              {x.name}
                             </p>
+                            <Badge className={`${averia.className} text-2xl bg-red-400 text-white m-1`}>
+                            {x.country}
+                            </Badge>
+                           
+                          </div>
                           </CommandItem>
                         ))}
                       </CommandGroup>

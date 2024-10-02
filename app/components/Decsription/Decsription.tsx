@@ -44,6 +44,7 @@ const Description: React.FC<DescriptionProps> = ({ value }) => {
       "mist",
       "broken clouds",
       "overcast clouds",
+      "haze",
     ];
     const result2 = findMatch(value, myList2);
 

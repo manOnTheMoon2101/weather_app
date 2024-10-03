@@ -137,6 +137,6 @@
   { "name": "Durbanville", "value": "Durbanville", "country": "South Africa" },
   { "name": "Mossel Bay", "value": "Mossel Bay", "country": "South Africa" },
   { "name": "Port Louis", "value": "Port Louis", "country": "Mauritius" },
-  { "name": "Wellington", "value": "Wellington", "country": "New Zealand" },
+  { "name": "Wellington(NZ)", "value": "Wellington", "country": "New Zealand" },
   { "name": "Cape Town", "value": "Cape Town", "country": "South Africa" }
 ]

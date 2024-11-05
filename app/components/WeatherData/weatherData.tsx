@@ -30,7 +30,7 @@ const averia = Averia_Sans_Libre({
 function WeatherData() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -54,7 +54,7 @@ function WeatherData() {
     fetchData();
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <div>
       {isLoading ? (

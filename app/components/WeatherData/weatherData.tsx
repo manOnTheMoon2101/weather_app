@@ -6,7 +6,6 @@ import { CiSearch } from "react-icons/ci";
 import Description from "../Decsription/Decsription";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import cities from "../../../data/cities.json";
 import {

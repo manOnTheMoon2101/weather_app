@@ -107,15 +107,14 @@ function WeatherData() {
                               setOpen(false);
                             }}
                           >
-                          <div className="flex flex-row justify-between w-full">
-                          <p className="text-purple-900 font-bold">
-                              {x.name}
-                            </p>
-                            {/* <Badge className={`${averia.className} text-2xl bg-red-400 text-white m-1`}>
+                            <div className="flex flex-row justify-between w-full">
+                              <p className="text-purple-900 font-bold">
+                                {x.name}
+                              </p>
+                              {/* <Badge className={`${averia.className} text-2xl bg-red-400 text-white m-1`}>
                             {x.country}
                             </Badge> */}
-                           
-                          </div>
+                            </div>
                           </CommandItem>
                         ))}
                       </CommandGroup>

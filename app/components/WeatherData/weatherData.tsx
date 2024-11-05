@@ -6,7 +6,6 @@ import { CiSearch } from "react-icons/ci";
 import Description from "../Decsription/Decsription";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import cities from "../../../data/cities.json";
 import {
@@ -30,7 +29,7 @@ const averia = Averia_Sans_Libre({
 function WeatherData() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -49,28 +48,18 @@ function WeatherData() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const handleInputChange = (e: any) => {
-    setCity(e.target.value);
-  };
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     fetchData();
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <div>
       {isLoading ? (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg p-2.5  w-[500px] h-[500px] max-w-[500px] max-h-[500px] backdrop-blur-[100%]">
+        <div>
           <SkeletonTheme baseColor="#fde68a" highlightColor="#fca5a5">
-            <Skeleton
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-              count={1}
-              width={200}
-              height={20}
-            />
+            <Skeleton count={1} width={200} height={20} />
           </SkeletonTheme>
         </div>
       ) : (
@@ -132,7 +121,7 @@ function WeatherData() {
             </div>
           </form>
           {weatherData ? (
-            <div className="m-10">
+            <div>
               <h2
                 className={`text-center text-4xl text-white ${averia.className}`}
               >
@@ -141,7 +130,7 @@ function WeatherData() {
 
               <Description value={weatherData.weather[0].description} />
 
-              <div className="m-5 flex flex-col items-baseline">
+              <div className="flex flex-col items-baseline">
                 <Badge
                   className={`${averia.className} text-2xl bg-red-400 text-white m-1`}
                 >
@@ -156,7 +145,7 @@ function WeatherData() {
               </div>
             </div>
           ) : (
-            <div className="text-center m-10">
+            <div className="text-center">
               <h2
                 className={`${averia.className} text-center text-black text-6xl sm:text-8xl tracking-wide`}
               >

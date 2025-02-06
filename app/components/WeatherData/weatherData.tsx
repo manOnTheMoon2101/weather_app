@@ -7,7 +7,9 @@ import Description from "../Decsription/Decsription";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Badge } from "@/components/ui/badge";
+import { WiStrongWind } from "react-icons/wi";
 import cities from "../../../data/cities.json";
+import Flag from "react-world-flags";
 import {
   Command,
   CommandEmpty,
@@ -46,8 +48,10 @@ function WeatherData() {
   const currentDate = new Date(Date.now());
   const isoString = currentDate.toDateString();
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (city) {
+      fetchData();
+    }
+  }, [city]);
   const handleSubmit = (e: any) => {
     e.preventDefault();
     fetchData();
@@ -72,7 +76,7 @@ function WeatherData() {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[200px] justify-between w-full bg-amber-200 font-bold"
+                    className="justify-between w-full bg-amber-200 font-bold"
                   >
                     {city
                       ? cities.find((x) => x.value === city)?.name
@@ -111,20 +115,25 @@ function WeatherData() {
                   </Command>
                 </PopoverContent>
               </Popover>
-              <Button
+              {/* <Button
                 variant="ghost"
                 className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-black"
                 type="submit"
               >
                 <CiSearch />
-              </Button>
+              </Button> */}
             </div>
           </form>
           {weatherData ? (
             <div>
               <h2
-                className={`text-center text-4xl text-white ${averia.className}`}
+                className={`text-center text-4xl text-white flex flex-row justify-center items-center ${averia.className}`}
               >
+                <Flag
+                  code={weatherData.sys.country}
+                  style={{ width: "50px", height: "25px" }}
+                  fallback={<span>Unknown</span>}
+                />
                 {weatherData.name}
               </h2>
 
@@ -138,6 +147,10 @@ function WeatherData() {
                 </Badge>
                 <Badge className="bg-orange-300 text-white text-2xl  m-1">
                   {weatherData.main.temp}°C
+                </Badge>
+                <Badge className="bg-purple-900 text-white text-2xl  m-1">
+                  {weatherData.wind.speed}
+                  <WiStrongWind />
                 </Badge>
                 <p className={`${averia.className} m-1 text-xl text-white`}>
                   {isoString}

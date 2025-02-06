@@ -70,7 +70,7 @@ const Description: React.FC<DescriptionProps> = ({ value }) => {
     return (
       <div className="flex flex-row justify-center">
         {" "}
-        <SkeletonTheme baseColor="#BDE8CA" highlightColor="#0D7C66">
+        <SkeletonTheme baseColor="#fde68a" highlightColor="#fca5a5">
           <Skeleton
             className="flex flex-row justify-center"
             count={1}
@@ -83,13 +83,13 @@ const Description: React.FC<DescriptionProps> = ({ value }) => {
   }
 
   return (
-    <>
+    <div className="h-[250px]">
       {splineScene ? (
         <Spline className="flex flex-row justify-center" scene={splineScene} />
       ) : (
         <div>No matching scene found.</div>
       )}
-    </>
+    </div>
   );
 };
 

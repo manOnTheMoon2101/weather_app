@@ -47,6 +47,10 @@ function WeatherData() {
       setIsLoading(false);
     }
   };
+  function formatUnixTime(unixTimestamp:any) {
+    const date = new Date(unixTimestamp * 1000);
+    return date.toLocaleTimeString();
+  }
   const currentDate = new Date(Date.now());
   const isoString = currentDate.toDateString();
   useEffect(() => {
@@ -128,7 +132,7 @@ function WeatherData() {
               >
                 <Flag
                   code={weatherData.sys.country}
-                  style={{ width: "50px", height: "25px" }}
+                  className="w-[50px] h-[25px] mr-2"
                   fallback={<span>Unknown</span>}
                 />
                 {weatherData.name}
@@ -143,12 +147,37 @@ function WeatherData() {
                   {weatherData.weather[0].description}
                 </Badge>
                 <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                  {weatherData.main.temp}°C
+                 Main {weatherData.main.temp}°C
+                </Badge>
+                <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                 Min {weatherData.main.temp_min}°C
+                </Badge>
+                <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                 Max {weatherData.main.temp_max}°C
+                </Badge>
+                <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                 Sea Level {weatherData.main.sea_level}
+                </Badge>
+                <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                 Humidity{weatherData.main.humidity}
+                </Badge>
+                <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                  Feels Like{weatherData.main.feels_like}°C
                 </Badge>
                 <Badge className="bg-purple-900 text-white text-2xl  m-1">
-                  {weatherData.wind.speed}
+                  Speed {weatherData.wind.speed}
                   <WiStrongWind />
                 </Badge>
+                <Badge className="bg-purple-900 text-white text-2xl  m-1">
+                 Degree {weatherData.wind.deg}
+                  <WiStrongWind />
+                </Badge>
+                <p className={`${averia.className} m-1 text-xl text-white`}>
+                 Sunrise {formatUnixTime(weatherData.sys.sunrise)}(our time)
+                </p>
+                <p className={`${averia.className} m-1 text-xl text-white`}>
+                 Sunset {formatUnixTime(weatherData.sys.sunset)}(our time)
+                </p>
                 <p className={`${averia.className} m-1 text-xl text-white`}>
                   {isoString}
                 </p>

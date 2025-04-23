@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { WiStrongWind } from "react-icons/wi";
 import cities from "../../../data/cities.json";
 import Flag from "react-world-flags";
+import { Building2 } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -29,7 +30,7 @@ const averia = Averia_Sans_Libre({
   weight: "400",
 });
 function WeatherData() {
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const fetchData = async () => {
@@ -69,61 +70,52 @@ function WeatherData() {
       ) : (
         <div>
           <form onSubmit={handleSubmit}>
-            <div className="relative m-5 w-[300px] flex mx-auto">
-              <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    role="combobox"
-                    aria-expanded={open}
-                    className="justify-between w-full bg-amber-200 font-bold"
-                  >
-                    {city
-                      ? cities.find((x) => x.value === city)?.name
-                      : "Select City..."}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-full p-2.5 bg-amber-200">
-                  <Command>
-                    <CommandInput placeholder="Search City..." />
-                    <CommandList>
-                      <CommandEmpty>No city found.</CommandEmpty>
-                      <CommandGroup className="w-full bg-amber-200">
-                        {cities.map((x) => (
-                          <CommandItem
-                            key={x.value}
-                            value={x.value}
-                            onSelect={(currentValue) => {
-                              setCity(
-                                currentValue === city ? "" : currentValue
-                              );
-                              setOpen(false);
-                            }}
-                          >
-                            <div className="flex flex-row justify-between w-full">
-                              <p className="text-purple-900 font-bold">
-                                {x.name}
-                              </p>
-                              {/* <Badge className={`${averia.className} text-2xl bg-red-400 text-white m-1`}>
-                            {x.country}
-                            </Badge> */}
-                            </div>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              {/* <Button
-                variant="ghost"
-                className="border-none text-2xl bg-transparent absolute top-1/2 right-2.5 transform -translate-y-1/2 cursor-pointer text-black"
-                type="submit"
-              >
-                <CiSearch />
-              </Button> */}
-            </div>
-          </form>
+              <div className="relative m-5 w-[300px] flex mx-auto">
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="justify-start w-full bg-amber-200 font-bold"
+                    >
+                      <Building2 className="mr-2"/>
+                      {city
+                        ? cities.find((x) => x.value === city)?.name
+                        : <span>Search City...</span>}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-full p-2.5 bg-amber-200">
+                    <Command>
+                      <CommandInput placeholder="Search City..." />
+                      <CommandList>
+                        <CommandEmpty>No city found.</CommandEmpty>
+                        <CommandGroup className="w-full bg-amber-200">
+                          {cities.map((x) => (
+                            <CommandItem
+                              key={x.value}
+                              value={x.value}
+                              onSelect={(currentValue) => {
+                                setCity(
+                                  currentValue === city ? "" : currentValue
+                                );
+                                setOpen(false);
+                              }}
+                            >
+                              <div className="flex flex-row justify-between w-full">
+                                <p className="text-purple-900 font-bold">
+                                  {x.name}
+                                </p>
+                              </div>
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </div>
+            </form>
           {weatherData ? (
             <div>
               <h2
@@ -162,14 +154,13 @@ function WeatherData() {
               <h2
                 className={`${averia.className} text-center text-black text-6xl sm:text-8xl tracking-wide`}
               >
-                Welcome
-                {/* <span>👋</span> */}
+              Yo,
               </h2>
               <p
                 className={`${averia.className} text-center text-white text-2xl md:text-4xl tracking-tight`}
               >
-                Enter you designated city
-                <br /> in the search bar on top.
+              drop your fave city in the search bar up top
+                <br /> let's vibe! 😎🔥
               </p>
             </div>
           )}

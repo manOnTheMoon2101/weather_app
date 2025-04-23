@@ -5,10 +5,10 @@ export const GET = async (
   { params }: { params: { town: string } }
 ) => {
   try {
-    const { town } = params;
+
     const apiKey = process.env.API_KEY;
     const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${town}&units=metric&appid=${apiKey}`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${params.town}&units=metric&appid=${apiKey}`,
       {
         next: { revalidate: 900 },
       }

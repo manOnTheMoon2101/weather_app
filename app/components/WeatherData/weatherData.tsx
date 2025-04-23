@@ -25,6 +25,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const averia = Averia_Sans_Libre({
   subsets: ["latin"],
   weight: "400",
@@ -63,59 +64,63 @@ function WeatherData() {
     <div>
       {isLoading ? (
         <div>
-          <SkeletonTheme baseColor="#fde68a" highlightColor="#fca5a5">
+          <SkeletonTheme baseColor="#FADA7A" highlightColor="#fca5a5">
             <Skeleton count={1} width={200} height={20} />
           </SkeletonTheme>
         </div>
       ) : (
         <div>
           <form onSubmit={handleSubmit}>
-              <div className="relative m-5 w-[300px] flex mx-auto">
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      aria-expanded={open}
-                      className="justify-start w-full bg-amber-200 font-bold"
-                    >
-                      <Building2 className="mr-2"/>
-                      {city
-                        ? cities.find((x) => x.value === city)?.name
-                        : <span>Search City...</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-full p-2.5 bg-amber-200">
-                    <Command>
-                      <CommandInput placeholder="Search City..." />
-                      <CommandList>
-                        <CommandEmpty>No city found.</CommandEmpty>
-                        <CommandGroup className="w-full bg-amber-200">
-                          {cities.map((x) => (
-                            <CommandItem
-                              key={x.value}
-                              value={x.value}
-                              onSelect={(currentValue) => {
-                                setCity(
-                                  currentValue === city ? "" : currentValue
-                                );
-                                setOpen(false);
-                              }}
-                            >
-                              <div className="flex flex-row justify-between w-full">
-                                <p className="text-purple-900 font-bold">
-                                  {x.name}
-                                </p>
-                              </div>
-                            </CommandItem>
-                          ))}
-                        </CommandGroup>
-                      </CommandList>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-              </div>
-            </form>
+            <div className="relative m-5 w-[300px] flex mx-auto">
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="justify-start w-full bg-teal-400 border-yellow-100 font-bold"
+                  >
+                    <Building2 className="mr-2 text-yellow-100" />
+                    {city ? (
+                      cities.find((x) => x.value === city)?.name
+                    ) : (
+                      <span>Search City...</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-2.5 bg-yellow-100">
+                  <Command>
+                    <CommandInput placeholder="Search City..." />
+                    <CommandList>
+                      <CommandEmpty>No city found.</CommandEmpty>
+                      <CommandGroup className="w-full bg-yellow-100">
+                        {cities.map((x) => (
+                          <CommandItem
+                            key={x.value}
+                            value={x.value}
+                            onSelect={(currentValue) => {
+                              setCity(
+                                currentValue === city ? "" : currentValue
+                              );
+                              setOpen(false);
+                            }}
+                          >
+                            <div className="flex flex-row justify-between w-full">
+                              <Avatar className="w-6 h-6">
+                                <AvatarImage src={x.url} />
+                                <AvatarFallback>{x.country}</AvatarFallback>
+                              </Avatar>
+                              <p className="text-black font-bold">{x.name}</p>
+                            </div>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </form>
           {weatherData ? (
             <div>
               <h2
@@ -152,14 +157,14 @@ function WeatherData() {
           ) : (
             <div className="text-center">
               <h2
-                className={`${averia.className} text-center text-black text-6xl sm:text-8xl tracking-wide`}
+                className={`${averia.className} text-center text-yellow-100 text-6xl sm:text-8xl tracking-wide`}
               >
-              Yo,
+                Hey!
               </h2>
               <p
                 className={`${averia.className} text-center text-white text-2xl md:text-4xl tracking-tight`}
               >
-              drop your fave city in the search bar up top
+                Pop your favorite city into the search bar up there
                 <br /> let's vibe! 😎🔥
               </p>
             </div>

@@ -64,7 +64,7 @@ function WeatherData() {
     <div>
       {isLoading ? (
         <div>
-          <SkeletonTheme baseColor="#FADA7A" highlightColor="#fca5a5">
+          <SkeletonTheme baseColor="#2DD4BF" highlightColor="#FEF9c3">
             <Skeleton count={1} width={200} height={20} />
           </SkeletonTheme>
         </div>

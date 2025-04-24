@@ -10,7 +10,14 @@ import { Badge } from "@/components/ui/badge";
 import { WiStrongWind } from "react-icons/wi";
 import cities from "../../../data/cities.json";
 import Flag from "react-world-flags";
-import { Building2 } from "lucide-react";
+import {
+  Building2,
+  Ruler,
+  Sunrise,
+  Sunset,
+  Thermometer,
+  Wind,
+} from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -19,6 +26,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Separator } from "@/components/ui/separator";
 import {
   Popover,
   PopoverContent,
@@ -47,7 +55,7 @@ function WeatherData() {
       setIsLoading(false);
     }
   };
-  function formatUnixTime(unixTimestamp:any) {
+  function formatUnixTime(unixTimestamp: any) {
     const date = new Date(unixTimestamp * 1000);
     return date.toLocaleTimeString();
   }
@@ -146,41 +154,76 @@ function WeatherData() {
                 >
                   {weatherData.weather[0].description}
                 </Badge>
-                <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                 Main {weatherData.main.temp}°C
-                </Badge>
-                <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                 Min {weatherData.main.temp_min}°C
-                </Badge>
-                <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                 Max {weatherData.main.temp_max}°C
-                </Badge>
-                <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                 Sea Level {weatherData.main.sea_level}
-                </Badge>
-                <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                 Humidity{weatherData.main.humidity}
-                </Badge>
-                <Badge className="bg-orange-300 text-white text-2xl  m-1">
-                  Feels Like{weatherData.main.feels_like}°C
-                </Badge>
-                <Badge className="bg-purple-900 text-white text-2xl  m-1">
-                  Speed {weatherData.wind.speed}
-                  <WiStrongWind />
-                </Badge>
-                <Badge className="bg-purple-900 text-white text-2xl  m-1">
-                 Degree {weatherData.wind.deg}
-                  <WiStrongWind />
-                </Badge>
-                <p className={`${averia.className} m-1 text-xl text-white`}>
-                 Sunrise {formatUnixTime(weatherData.sys.sunrise)}(our time)
-                </p>
-                <p className={`${averia.className} m-1 text-xl text-white`}>
-                 Sunset {formatUnixTime(weatherData.sys.sunset)}(our time)
-                </p>
-                <p className={`${averia.className} m-1 text-xl text-white`}>
+                <div className="mt-2">
+                  <h3 className="font-bold text-2xl flex flex-row items-center">
+                    <Thermometer className="mr-2 text-yellow-100" />
+                    Temperature
+                  </h3>
+                  <Badge className="bg-blue-300 text-white text-2xl  m-1">
+                    Min {weatherData.main.temp_min}°C
+                  </Badge>
+                  <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                    Main {weatherData.main.temp}°C
+                  </Badge>
+                  <Badge className="bg-red-300 text-white text-2xl  m-1">
+                    Max {weatherData.main.temp_max}°C
+                  </Badge>
+
+                  <span className="text-yellow-100 italic m-2">
+                    Feels Like {weatherData.main.feels_like}°C...
+                  </span>
+                </div>
+                <div className="mt-2">
+                  <h3 className="font-bold text-2xl flex flex-row items-center">
+                    <Ruler className="mr-2 text-yellow-100" />
+                    Sea Level & Humidity
+                  </h3>
+                  <Badge className="bg-teal-400 text-white text-2xl  m-1">
+                    Sea Level {weatherData.main.sea_level}
+                  </Badge>
+                  <Badge className="bg-teal-400 text-white text-2xl  m-1">
+                    Humidity {weatherData.main.humidity}
+                  </Badge>
+                </div>
+                <div className="mt-2">
+                  <h3 className="font-bold text-2xl flex flex-row items-center">
+                    <Wind className="mr-2 text-yellow-100" />
+                    Wind
+                  </h3>
+                  <Badge className="bg-violet-400 text-white text-2xl  m-1">
+                    Speed {weatherData.wind.speed}
+                  </Badge>
+                  <Badge className="bg-violet-400 text-white text-2xl  m-1">
+                    Degree {weatherData.wind.deg}
+                  </Badge>
+                </div>
+                <div className="mt-2  w-full flex flex-row justify-between">
+                  <div>
+                    <h3 className="font-bold text-2xl flex flex-row items-center">
+                      <Sunrise className="mr-2 text-yellow-100" />
+                      Sunrise
+                    </h3>
+                    <p className={`${averia.className} m-1 text-xl text-white`}>
+                      {formatUnixTime(weatherData.sys.sunrise)} UTC +2 hours
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-2xl flex flex-row items-center">
+                      <Sunset className="mr-2 text-yellow-100" />
+                      Sunset
+                    </h3>
+                    <p className={`${averia.className} m-1 text-xl text-white`}>
+                      {formatUnixTime(weatherData.sys.sunset)} UTC +2 hours
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 flex flex-row justify-end">
+                <Badge
+                  className={`${averia.className} m-1 text-xl text-black bg-white`}
+                >
                   {isoString}
-                </p>
+                </Badge>
               </div>
             </div>
           ) : (

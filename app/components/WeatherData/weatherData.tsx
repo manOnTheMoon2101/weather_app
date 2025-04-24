@@ -150,12 +150,12 @@ function WeatherData() {
               <Description value={weatherData.weather[0].description} />
 
               <div className="flex flex-col items-baseline">
-              <h3
-                    className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
-                  >
-                    <Info className="mr-2 text-yellow-100" />
-                    Description
-                  </h3>
+                <h3
+                  className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                >
+                  <Info className="mr-2 text-yellow-100" />
+                  Description
+                </h3>
                 <Badge
                   className={`${averia.className} text-2xl bg-red-400 text-white m-1`}
                 >

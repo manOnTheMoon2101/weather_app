@@ -12,6 +12,7 @@ import cities from "../../../data/cities.json";
 import Flag from "react-world-flags";
 import {
   Building2,
+  Info,
   Ruler,
   Sunrise,
   Sunset,
@@ -149,13 +150,21 @@ function WeatherData() {
               <Description value={weatherData.weather[0].description} />
 
               <div className="flex flex-col items-baseline">
+              <h3
+                    className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                  >
+                    <Info className="mr-2 text-yellow-100" />
+                    Description
+                  </h3>
                 <Badge
                   className={`${averia.className} text-2xl bg-red-400 text-white m-1`}
                 >
                   {weatherData.weather[0].description}
                 </Badge>
                 <div className="mt-2">
-                  <h3 className="font-bold text-2xl flex flex-row items-center">
+                  <h3
+                    className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                  >
                     <Thermometer className="mr-2 text-yellow-100" />
                     Temperature
                   </h3>
@@ -174,7 +183,9 @@ function WeatherData() {
                   </span>
                 </div>
                 <div className="mt-2">
-                  <h3 className="font-bold text-2xl flex flex-row items-center">
+                  <h3
+                    className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                  >
                     <Ruler className="mr-2 text-yellow-100" />
                     Sea Level & Humidity
                   </h3>
@@ -186,7 +197,9 @@ function WeatherData() {
                   </Badge>
                 </div>
                 <div className="mt-2">
-                  <h3 className="font-bold text-2xl flex flex-row items-center">
+                  <h3
+                    className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                  >
                     <Wind className="mr-2 text-yellow-100" />
                     Wind
                   </h3>
@@ -199,7 +212,9 @@ function WeatherData() {
                 </div>
                 <div className="mt-2  w-full flex flex-row justify-between">
                   <div>
-                    <h3 className="font-bold text-2xl flex flex-row items-center">
+                    <h3
+                      className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                    >
                       <Sunrise className="mr-2 text-yellow-100" />
                       Sunrise
                     </h3>
@@ -208,7 +223,9 @@ function WeatherData() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-bold text-2xl flex flex-row items-center">
+                    <h3
+                      className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
+                    >
                       <Sunset className="mr-2 text-yellow-100" />
                       Sunset
                     </h3>

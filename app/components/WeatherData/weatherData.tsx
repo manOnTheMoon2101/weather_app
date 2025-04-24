@@ -149,7 +149,7 @@ function WeatherData() {
 
               <Description value={weatherData.weather[0].description} />
 
-              <div className="flex flex-col items-baseline">
+              <div className="flex flex-col items-baseline mx-2">
                 <h3
                   className={`${averia.className} font-bold text-2xl flex flex-row items-center`}
                 >

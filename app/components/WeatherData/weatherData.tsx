@@ -157,7 +157,7 @@ function WeatherData() {
                   Description
                 </h3>
                 <Badge
-                  className={`${averia.className} text-2xl bg-red-400 text-white m-1`}
+                  className={`${averia.className} text-1xl bg-red-400 text-white m-1`}
                 >
                   {weatherData.weather[0].description}
                 </Badge>
@@ -168,17 +168,17 @@ function WeatherData() {
                     <Thermometer className="mr-2 text-yellow-100" />
                     Temperature
                   </h3>
-                  <Badge className="bg-blue-300 text-white text-2xl  m-1">
+                  <Badge className="bg-blue-300 text-white text-1xl  m-1">
                     Min {weatherData.main.temp_min}°C
                   </Badge>
-                  <Badge className="bg-orange-300 text-white text-2xl  m-1">
+                  <Badge className="bg-orange-300 text-white text-1xl  m-1">
                     Main {weatherData.main.temp}°C
                   </Badge>
-                  <Badge className="bg-red-300 text-white text-2xl  m-1">
+                  <Badge className="bg-red-300 text-white text-1xl  m-1">
                     Max {weatherData.main.temp_max}°C
                   </Badge>
 
-                  <span className="text-yellow-100 italic m-2">
+                  <span className="text-yellow-100 text-1xl  italic m-2">
                     Feels Like {weatherData.main.feels_like}°C...
                   </span>
                 </div>
@@ -189,10 +189,10 @@ function WeatherData() {
                     <Ruler className="mr-2 text-yellow-100" />
                     Sea Level & Humidity
                   </h3>
-                  <Badge className="bg-teal-400 text-white text-2xl  m-1">
+                  <Badge className="bg-teal-400 text-white text-1xl  m-1">
                     Sea Level {weatherData.main.sea_level}
                   </Badge>
-                  <Badge className="bg-teal-400 text-white text-2xl  m-1">
+                  <Badge className="bg-teal-400 text-white text-1xl  m-1">
                     Humidity {weatherData.main.humidity}
                   </Badge>
                 </div>
@@ -203,10 +203,10 @@ function WeatherData() {
                     <Wind className="mr-2 text-yellow-100" />
                     Wind
                   </h3>
-                  <Badge className="bg-violet-400 text-white text-2xl  m-1">
+                  <Badge className="bg-violet-400 text-white text-1xl  m-1">
                     Speed {weatherData.wind.speed}
                   </Badge>
-                  <Badge className="bg-violet-400 text-white text-2xl  m-1">
+                  <Badge className="bg-violet-400 text-white text-1xl  m-1">
                     Degree {weatherData.wind.deg}
                   </Badge>
                 </div>
@@ -218,7 +218,7 @@ function WeatherData() {
                       <Sunrise className="mr-2 text-yellow-100" />
                       Sunrise
                     </h3>
-                    <p className={`${averia.className} m-1 text-xl text-white`}>
+                    <p className={`${averia.className} m-1 text-1xl text-white`}>
                       {formatUnixTime(weatherData.sys.sunrise)} UTC +2 hours
                     </p>
                   </div>
@@ -229,7 +229,7 @@ function WeatherData() {
                       <Sunset className="mr-2 text-yellow-100" />
                       Sunset
                     </h3>
-                    <p className={`${averia.className} m-1 text-xl text-white`}>
+                    <p className={`${averia.className} m-1 text-1xl text-white`}>
                       {formatUnixTime(weatherData.sys.sunset)} UTC +2 hours
                     </p>
                   </div>

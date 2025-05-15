@@ -91,9 +91,9 @@ function WeatherData() {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="justify-start w-full bg-teal-400 border-yellow-100 font-bold"
+                    className="justify-start w-full bg-white border-red-400 font-bold"
                   >
-                    <Building2 className="mr-2 text-yellow-100" />
+                    <Building2 className="mr-2 text-red-400" />
                     {city ? (
                       cities.find((x) => x.value === city)?.name
                     ) : (
@@ -119,8 +119,8 @@ function WeatherData() {
                             }}
                           >
                             <div className="flex flex-row justify-between w-full">
-                              <Avatar className="w-6 h-6">
-                                <AvatarImage src={x.url} />
+                            <Avatar className="w-8 h-8">
+                                <AvatarImage src={x.url} className="object-contain" />
                                 <AvatarFallback>{x.country}</AvatarFallback>
                               </Avatar>
                               <p className="text-black font-bold">{x.name}</p>
@@ -171,9 +171,9 @@ function WeatherData() {
                   <Badge className="bg-blue-300 text-white text-1xl  m-1">
                     Min {weatherData.main.temp_min}°C
                   </Badge>
-                  <Badge className="bg-orange-300 text-white text-1xl  m-1">
+                  {/* <Badge className="bg-orange-300 text-white text-1xl  m-1">
                     Main {weatherData.main.temp}°C
-                  </Badge>
+                  </Badge> */}
                   <Badge className="bg-red-300 text-white text-1xl  m-1">
                     Max {weatherData.main.temp_max}°C
                   </Badge>
